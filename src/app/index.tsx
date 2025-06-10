@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function HomeScreen() {
-  return <Redirect href={'/(authApp)/(tabs)'} />;
+  return <Redirect href={'/(authedApp)/(tabs)'} />;
   // return (
   //   <View style={styles.container}>
   //     <Text>Hello World</Text>
