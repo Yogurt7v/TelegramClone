@@ -1,6 +1,5 @@
 //theme provider
 //auth provider
-
 import { Slot, Stack } from 'expo-router';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 

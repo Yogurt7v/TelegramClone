@@ -1,10 +1,35 @@
 import { Slot, Stack } from 'expo-router';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useEffect } from 'react';
+import { StreamChat } from 'stream-chat';
+import { Chat, OverlayProvider } from 'stream-chat-expo';
+
+const client = StreamChat.getInstance('jfsfn8r5755v');
 
 export default function AuthLayout() {
+  useEffect(() => {
+    const connect = async () => {
+      await client.connectUser(
+        {
+          id: 'atomas',
+          name: 'Tomas Anderson',
+          image: 'https://i.imgur.com/fR9Jz14.png',
+        },
+        client.devToken('atomas')
+      );
+      const channel = client.channel('messaging', 'the_meeting', {
+        name: 'The Meeting',
+      } as any);
+      await channel.watch();
+    };
+
+    connect();
+  }, []);
+
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <Slot />
-    </GestureHandlerRootView>
+    <OverlayProvider>
+      <Chat client={client}>
+        <Slot />
+      </Chat>
+    </OverlayProvider>
   );
 }
